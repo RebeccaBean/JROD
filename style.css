@@ -1130,13 +1130,14 @@ a {
     align-items: center;
     flex-shrink: 0;
     text-decoration: none;
+    width: 360px; /* adjust to taste */
 }
 
 .brand-logo {
     display: block;
-    width: 170px;
+    width: 100%;
     height: auto;
-    max-height: 64px;
+    max-height: none;
     object-fit: contain;
 
     opacity: 0;
@@ -1149,55 +1150,22 @@ a {
     transform-origin: center center;
 }
 
-/* Logo slides in from the left */
-@keyframes logoSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-45px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Subtle throb */
-@keyframes logoThrob {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.045);
-    }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .brand-logo {
-        opacity: 1;
-        transform: none;
-        animation: none;
-    }
-}
-
-/* Mobile */
 @media (max-width: 760px) {
-.brand-logo {
-  width: 100%;
-  height: auto;
-}
-
+    .brand-logo {
+        width: 100%;
+        height: auto;
+        max-height: none;
+    }
 }
 
 @media (max-width: 480px) {
     .brand-logo {
-        width: 130px;
-        max-height: 52px;
+        width: 100%;
+        height: auto;
+        max-height: none;
     }
 }
+
 /* =========================================================
    UPCOMING CLASSES / SCHEDULE
 ========================================================= */
