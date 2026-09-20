@@ -4,6 +4,10 @@
    Brand: Black + Red / CPR-inspired
    ========================================================= */
 
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
 :root {
   --black: #090909;
   --black-soft: #151515;
@@ -22,7 +26,9 @@
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
 }
 
-/* ---------- RESET ---------- */
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -61,7 +67,9 @@ a {
   color: var(--white);
 }
 
-/* ---------- SHARED ---------- */
+/* =========================================================
+   SHARED LAYOUT
+========================================================= */
 
 .section-inner,
 .header-inner,
@@ -154,7 +162,9 @@ a {
   background: var(--off-white);
 }
 
-/* ---------- HEADER ---------- */
+/* =========================================================
+   HEADER + NAV + LOGO
+========================================================= */
 
 .site-header {
   position: relative;
@@ -165,32 +175,48 @@ a {
 }
 
 .header-inner {
-  min-height: 200px;
+  min-height: 120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
 }
 
-/* Expanded brand bar for full-width logo */
+/* Brand bar / logo container */
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  width: 360px;
   flex-shrink: 0;
   text-decoration: none;
+  width: 420px;
 }
 
-/* Remove the old 58px icon sizing */
+/* Logo image */
+.brand-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+
+  opacity: 0;
+  transform: translateX(-45px);
+  animation:
+    logoSlideIn 0.9s ease-out forwards,
+    logoThrob 3.5s ease-in-out 1s infinite;
+  transform-origin: center center;
+}
+
+/* Remove old icon mark */
 .brand-mark {
   display: none;
 }
 
+/* Main navigation */
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 
 .main-nav a {
@@ -230,24 +256,23 @@ a {
   display: none;
 }
 
+/* No hamburger menu; keep nav visible */
 .menu-toggle {
   display: none;
-  width: 44px;
-  height: 44px;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
 }
 
-.menu-toggle span {
-  display: block;
-  width: 25px;
-  height: 2px;
-  margin: 5px auto;
-  background: var(--white);
+/* Reduced motion for logo */
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
-/* ---------- HERO ---------- */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
   position: relative;
@@ -270,8 +295,6 @@ a {
   border: 70px solid rgba(201, 0, 0, 0.12);
   border-radius: 50%;
 }
-
-/* ---------- HERO CONTENT ---------- */
 
 .hero-content {
   position: relative;
@@ -357,7 +380,7 @@ a {
   box-shadow: var(--shadow);
 }
 
-/* Optional real photo replacement:
+/* Optional real photo:
 .hero-photo-placeholder {
   background-image:
     linear-gradient(rgba(0,0,0,.12), rgba(0,0,0,.35)),
@@ -447,7 +470,9 @@ a {
   line-height: 1.2;
 }
 
-/* ---------- MISSION SECTION ---------- */
+/* =========================================================
+   MISSION
+========================================================= */
 
 .mission-section {
   padding: 110px 0;
@@ -505,8 +530,9 @@ a {
   margin-top: 30px;
 }
 
-
-/* ---------- CLASSES ---------- */
+/* =========================================================
+   CLASSES
+========================================================= */
 
 .classes-preview {
   padding: 100px 0 110px;
@@ -612,60 +638,47 @@ a {
   display: none;
 }
 
-/* ---------- PHOTO STRIP ---------- */
+/* =========================================================
+   PHOTO STRIP (WIDE)
+========================================================= */
 
 .photo-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  min-height: 260px;
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 350px;
   background: var(--black);
 }
 
 .photo-tile {
   position: relative;
-  min-height: 260px;
-  overflow: hidden;
-  background:
-    linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.05)),
-    linear-gradient(135deg, #303030, #737373);
-  border-right: 1px solid rgba(255,255,255,.15);
-}
-
-/* Example replacement:
-.photo-one {
-  background-image:
-    linear-gradient(to top, rgba(0,0,0,.7), transparent),
-    url("images/class-1.jpg");
+  min-height: 350px;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  color: var(--white);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
-*/
 
-.photo-tile:nth-child(even) {
-  background-color: #222;
-}
-
-.photo-tile::after {
-  content: "+";
+.photo-tile::before {
+  content: "";
   position: absolute;
-  top: 18px;
-  right: 20px;
-  color: rgba(255,255,255,.35);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 2rem;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
 }
 
 .photo-tile span {
-  position: absolute;
-  left: 20px;
-  bottom: 18px;
-  color: var(--white);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  position: relative;
+  z-index: 2;
 }
 
-/* ---------- FINAL CTA ---------- */
+/* =========================================================
+   FINAL CTA
+========================================================= */
 
 .final-cta {
   position: relative;
@@ -706,7 +719,9 @@ a {
   text-transform: uppercase;
 }
 
-/* ---------- FOOTER ---------- */
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .site-footer {
   background: var(--black);
@@ -776,420 +791,8 @@ a {
   text-transform: uppercase;
 }
 
-/* ---------- RESPONSIVE ---------- */
-
-@media (max-width: 1000px) {
-
-  .hero-content {
-    grid-template-columns: 1fr;
-    gap: 50px;
-  }
-
-  .hero {
-    min-height: auto;
-  }
-
-  .hero-visual {
-    min-height: 460px;
-    max-width: 680px;
-  }
-
-  .mission-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .class-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .class-card {
-    min-height: auto;
-  }
-
-  .photo-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-inner {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer-brand {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 760px) {
-
-  .section-inner,
-  .header-inner,
-  .footer-inner {
-    width: min(100% - 30px, var(--max-width));
-  }
-
-  .header-inner {
-    min-height: 76px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .main-nav {
-    position: absolute;
-    left: 15px;
-    right: 15px;
-    top: calc(100% + 1px);
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 12px;
-    background: var(--black);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-
-  .main-nav.open {
-    display: flex;
-  }
-
-  .main-nav a {
-    padding: 14px 10px;
-  }
-
-  .main-nav .nav-register {
-    margin-top: 8px;
-    text-align: center;
-  }
-
-  .brand {
-    min-width: auto;
-  }
-
-  .brand-wordmark {
-    width: 100px;
-  }
-
-  .hero-content {
-    width: min(100% - 30px, var(--max-width));
-    padding: 70px 0;
-  }
-
-  .hero h1 {
-    font-size: clamp(3.6rem, 17vw, 5.6rem);
-  }
-}
-
-  /* ---------- MOBILE (≤760px) ---------- */
-
-.hero-text {
-  font-size: 0.98rem;
-}
-
-.hero-visual {
-  min-height: 390px;
-}
-
-.hero-photo-placeholder {
-  left: 20px;
-}
-
-.emergency-badge {
-  bottom: 25px;
-}
-
-.mission-section,
-.classes-preview {
-  padding: 75px 0;
-}
-
-.mission-copy h2,
-.section-heading h2 {
-  font-size: clamp(2.8rem, 13vw, 4.4rem);
-}
-
-.section-heading {
-  align-items: flex-start;
-}
-
-.desktop-link {
-  display: none;
-}
-
-.mobile-class-link {
-  display: inline-flex;
-  margin-top: 30px;
-}
-
-.photo-strip {
-  grid-template-columns: 1fr 1fr;
-}
-
-.photo-tile {
-  min-height: 190px;
-}
-
-.final-cta {
-  padding: 65px 0;
-}
-
-.final-cta-inner {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.footer-inner {
-  grid-template-columns: 1fr;
-  gap: 40px;
-  padding: 50px 0;
-}
-
-.footer-brand {
-  grid-column: auto;
-}
-
-.footer-bottom {
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 18px 0 25px;
-}
-
-/* ---------- MOBILE (≤480px) ---------- */
-
-@media (max-width: 480px) {
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-  }
-
-  .hero-visual {
-    min-height: 330px;
-  }
-
-  .hero-photo-placeholder {
-    left: 10px;
-    border-left-width: 5px;
-  }
-
-  .emergency-badge {
-    left: 0;
-    bottom: 15px;
-  }
-
-  .class-card {
-    flex-direction: column;
-    padding: 26px;
-  }
-
-  .photo-strip {
-    grid-template-columns: 1fr;
-  }
-
-  .photo-tile {
-    min-height: 210px;
-  }
-
-  .btn {
-    min-height: 50px;
-  }
-}
-
-/* ---------- INSTRUCTORS / EMPLOYEE SECTION ---------- */
-
-.employee-section {
-  padding: 90px 0;
-  background: var(--black);
-  color: var(--white);
-  border-top: 1px solid var(--border);
-}
-
-.employee-heading {
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 2.8rem;
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 0.12em;
-  margin-bottom: 50px;
-  color: var(--red);
-}
-
-.employee-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-}
-
-.employee-card {
-  background: var(--black-card);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.employee-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 55px rgba(0,0,0,0.35);
-}
-
-.employee-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  display: block;
-  border-bottom: 3px solid var(--red);
-}
-
-.employee-name {
-  padding: 18px 20px 22px;
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gray);
-  text-align: center;
-}
-
-/* Mobile (≤640px) */
-@media (max-width: 640px) {
-  .employee-section {
-    padding: 70px 0;
-  }
-
-  .employee-heading {
-    font-size: 2.2rem;
-  }
-
-  .employee-card img {
-    height: 220px;
-  }
-}
-
-/* ---------- WIDER PHOTO STRIP ---------- */
-
-.photo-strip {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  min-height: 350px;
-}
-
-.photo-tile {
-  position: relative;
-  min-height: 350px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: flex-end;
-  padding: 28px;
-  color: var(--white);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.photo-tile::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-}
-
-.photo-tile span {
-  position: relative;
-  z-index: 2;
-}
-
-/* Tablet (≤768px) */
-@media (max-width: 768px) {
-  .photo-strip {
-    grid-template-columns: 1fr;
-  }
-
-  .photo-tile {
-    min-height: 260px;
-  }
-}
-
-/* Mobile (≤480px) */
-@media (max-width: 480px) {
-  .photo-tile {
-    min-height: 220px;
-  }
-}
-
-/* ---------- JROD LOGO — FULL BRAND BAR ---------- */
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  text-decoration: none;
-  width: 360px;
-}
-
-.brand-logo {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-
-  opacity: 0;
-  transform: translateX(-45px);
-
-  animation:
-    logoSlideIn 0.9s ease-out forwards,
-    logoThrob 3.5s ease-in-out 1s infinite;
-
-  transform-origin: center center;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .brand-logo {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-}
-
-/* Tablet (≤760px) */
-@media (max-width: 760px) {
-  .brand {
-    width: 300px;
-  }
-
-  .brand-logo {
-    width: 100%;
-    height: auto;
-    max-height: none;
-  }
-}
-
-/* Mobile (≤480px) */
-@media (max-width: 480px) {
-  .brand {
-    width: 260px;
-  }
-
-  .brand-logo {
-    width: 100%;
-    height: auto;
-    max-height: none;
-  }
-}
-
 /* =========================================================
-   UPCOMING CLASSES / SCHEDULE
+   SCHEDULE (UPCOMING CLASSES)
 ========================================================= */
 
 .schedule-section {
@@ -1303,39 +906,6 @@ a {
   font-size: 1.05rem;
 }
 
-/* Mobile */
-@media (max-width: 760px) {
-  .schedule-section {
-    padding: 50px 0;
-  }
-
-  .schedule-card {
-    grid-template-columns: 75px 1fr;
-    gap: 18px;
-  }
-
-  .schedule-date {
-    padding-right: 15px;
-  }
-
-  .schedule-date .day {
-    font-size: 2.5rem;
-  }
-
-  .schedule-info h3 {
-    font-size: 1.45rem;
-  }
-
-  .schedule-card .btn {
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-}
-
-/* =========================================================
-   GOOGLE SHEET SCHEDULE
-========================================================= */
-
 .schedule-loading,
 .schedule-empty {
   padding: 35px 20px;
@@ -1357,7 +927,7 @@ a {
 }
 
 /* =========================================================
-   REGISTRATION PAGE
+   REGISTRATION PAGE HERO
 ========================================================= */
 
 .page-hero {
@@ -1457,7 +1027,7 @@ a {
   border: 1px solid var(--border);
   border-top: 4px solid var(--red);
   border-radius: 4px;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+  box-shadow: 0 18px 50px rgba(0,0,0,.22);
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
@@ -1470,7 +1040,7 @@ a {
   position: absolute;
   top: 12px;
   right: 18px;
-  color: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,.08);
   font-family: "Barlow Condensed", Impact, sans-serif;
   font-size: 5rem;
   font-weight: 800;
@@ -1563,7 +1133,7 @@ a {
 }
 
 /* =========================================================
-   REGISTRATION INFORMATION
+   REGISTRATION INFO
 ========================================================= */
 
 .registration-info-section {
@@ -1641,10 +1211,110 @@ a {
 }
 
 /* =========================================================
-   MOBILE
+   EMPLOYEE / INSTRUCTORS
 ========================================================= */
 
+.employee-section {
+  padding: 90px 0;
+  background: var(--black);
+  color: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+.employee-heading {
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 2.8rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.12em;
+  margin-bottom: 50px;
+  color: var(--red);
+}
+
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+}
+
+.employee-card {
+  background: var(--black-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.employee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.35);
+}
+
+.employee-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 3px solid var(--red);
+}
+
+.employee-name {
+  padding: 18px 20px 22px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gray);
+  text-align: center;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+/* <= 1000px (tablet / small laptop) */
 @media (max-width: 1000px) {
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-visual {
+    min-height: 460px;
+    max-width: 680px;
+  }
+
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .class-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .class-card {
+    min-height: auto;
+  }
+
+  .photo-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
   .registration-grid {
     grid-template-columns: 1fr;
     max-width: 650px;
@@ -1655,7 +1325,138 @@ a {
   }
 }
 
+/* <= 760px (mobile landscape / small tablet) */
 @media (max-width: 760px) {
+
+  .section-inner,
+  .header-inner,
+  .footer-inner {
+    width: min(100% - 30px, var(--max-width));
+  }
+
+  .header-inner {
+    min-height: 100px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .brand {
+    width: 300px;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  .hero-content {
+    width: min(100% - 30px, var(--max-width));
+    padding: 70px 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.6rem, 17vw, 5.6rem);
+  }
+
+  .hero-text {
+    font-size: 0.98rem;
+  }
+
+  .hero-visual {
+    min-height: 390px;
+  }
+
+  .hero-photo-placeholder {
+    left: 20px;
+  }
+
+  .emergency-badge {
+    bottom: 25px;
+  }
+
+  .mission-section,
+  .classes-preview {
+    padding: 75px 0;
+  }
+
+  .mission-copy h2,
+  .section-heading h2 {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+
+  .desktop-link {
+    display: none;
+  }
+
+  .mobile-class-link {
+    display: inline-flex;
+    margin-top: 30px;
+  }
+
+  .photo-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photo-tile {
+    min-height: 190px;
+  }
+
+  .final-cta {
+    padding: 65px 0;
+  }
+
+  .final-cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 50px 0;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 0 25px;
+  }
+
+  .schedule-section {
+    padding: 50px 0;
+  }
+
+  .schedule-card {
+    grid-template-columns: 75px 1fr;
+    gap: 18px;
+  }
+
+  .schedule-date {
+    padding-right: 15px;
+  }
+
+  .schedule-date .day {
+    font-size: 2.5rem;
+  }
+
+  .schedule-info h3 {
+    font-size: 1.45rem;
+  }
+
+  .schedule-card .btn {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
   .page-hero {
     padding: 75px 20px 60px;
   }
@@ -1672,9 +1473,73 @@ a {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
+  .employee-section {
+    padding: 70px 0;
+  }
+
+  .employee-heading {
+    font-size: 2.2rem;
+  }
+
+  .employee-card img {
+    height: 220px;
+  }
 }
 
+/* <= 480px (mobile portrait) */
 @media (max-width: 480px) {
+
+  .section-inner,
+  .header-inner,
+  .footer-inner {
+    width: min(100% - 20px, var(--max-width));
+  }
+
+  .brand {
+    width: 220px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-visual {
+    min-height: 330px;
+  }
+
+  .hero-photo-placeholder {
+    left: 10px;
+    border-left-width: 5px;
+  }
+
+  .emergency-badge {
+    left: 0;
+    bottom: 15px;
+  }
+
+  .class-card {
+    flex-direction: column;
+    padding: 26px;
+  }
+
+  .photo-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-tile {
+    min-height: 220px;
+  }
+
+  .btn {
+    min-height: 50px;
+  }
+
   .registration-grid {
     width: min(100% - 30px, 650px);
   }
@@ -1691,16 +1556,5 @@ a {
   .registration-btn {
     width: 100%;
     text-align: center;
-  }
-}
-@media (max-width: 480px) {
-  .section-inner,
-  .header-inner,
-  .footer-inner {
-    width: min(100% - 20px, var(--max-width));
-  }
-
-  .brand {
-    width: 220px;
   }
 }
