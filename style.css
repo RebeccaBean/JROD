@@ -165,7 +165,7 @@ a {
 }
 
 .header-inner {
-  min-height: 86px;
+  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1122,7 +1122,7 @@ a {
   }
 }
 /* =========================
-   JROD LOGO
+   JROD LOGO — FULL BRAND BAR
 ========================= */
 
 .brand {
@@ -1130,14 +1130,14 @@ a {
     align-items: center;
     flex-shrink: 0;
     text-decoration: none;
-    width: 360px; /* adjust to taste */
+    width: 360px; /* expand the left header bar */
 }
 
 .brand-logo {
     display: block;
-    width: 100%;
-    height: auto;
-    max-height: none;
+    width: 100%;      /* fill the brand container */
+    height: auto;     /* preserve aspect ratio */
+    max-height: none; /* allow full height */
     object-fit: contain;
 
     opacity: 0;
@@ -1150,7 +1150,21 @@ a {
     transform-origin: center center;
 }
 
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .brand-logo {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+/* Tablet */
 @media (max-width: 760px) {
+    .brand {
+        width: 300px; /* slightly smaller but still full-width */
+    }
+
     .brand-logo {
         width: 100%;
         height: auto;
@@ -1158,13 +1172,19 @@ a {
     }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
+    .brand {
+        width: 260px; /* fits mobile header */
+    }
+
     .brand-logo {
         width: 100%;
         height: auto;
         max-height: none;
     }
 }
+
 
 /* =========================================================
    UPCOMING CLASSES / SCHEDULE
