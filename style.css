@@ -1601,3 +1601,12 @@ a {
     text-align: center;
   }
 }
+.brand-mark,
+.logo-container,
+.logo-slide-throb {
+  display: block !important;
+  opacity: 1 !important;
+  transform: none !important;
+  height: auto !important;
+  width: 100% !important;
+}
