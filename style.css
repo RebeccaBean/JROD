@@ -163,7 +163,7 @@ a {
 }
 
 /* =========================================================
-   HEADER + NAV + LOGO
+   HEADER + NAV + LOGO  (WORKS WITH YOUR CURRENT HTML)
 ========================================================= */
 
 .site-header {
@@ -182,34 +182,47 @@ a {
   gap: 30px;
 }
 
-/* Brand bar / logo container */
+/* Brand container */
 .brand {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
   text-decoration: none;
-  width: 420px;
+  width: 420px; /* desktop default */
 }
 
-/* Logo image */
-.brand-logo {
+/* Your existing HTML uses .brand-mark → make it visible */
+.brand-mark {
+  display: flex;
+  align-items: center;
+}
+
+/* Your existing HTML uses .logo-container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+/* Your existing HTML uses .logo-slide-throb → apply animation + sizing */
+.logo-slide-throb {
   display: block;
   width: 100%;
   height: auto;
   max-height: none;
   object-fit: contain;
 
+  /* animation start state */
   opacity: 0;
   transform: translateX(-45px);
+
+  /* slide + throb animation */
   animation:
     logoSlideIn 0.9s ease-out forwards,
     logoThrob 3.5s ease-in-out 1s infinite;
-  transform-origin: center center;
-}
 
-/* Remove old icon mark */
-.brand-mark {
-  display: none;
+  transform-origin: center center;
 }
 
 /* Main navigation */
@@ -256,17 +269,47 @@ a {
   display: none;
 }
 
-/* No hamburger menu; keep nav visible */
+/* No hamburger menu */
 .menu-toggle {
   display: none;
 }
 
-/* Reduced motion for logo */
+/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .brand-logo {
+  .logo-slide-throb {
     opacity: 1;
     transform: none;
     animation: none;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE LOGO SIZING
+========================================================= */
+
+/* Tablet */
+@media (max-width: 760px) {
+  .brand {
+    width: 300px;
+  }
+
+  .header-inner {
+    min-height: 100px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .brand {
+    width: 220px;
   }
 }
 
