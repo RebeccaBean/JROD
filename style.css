@@ -4,10 +4,6 @@
    Brand: Black + Red / CPR-inspired
    ========================================================= */
 
-/* =========================================================
-   ROOT VARIABLES
-========================================================= */
-
 :root {
   --black: #090909;
   --black-soft: #151515;
@@ -26,9 +22,7 @@
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
 }
 
-/* =========================================================
-   RESET
-========================================================= */
+/* ---------- RESET ---------- */
 
 * {
   box-sizing: border-box;
@@ -67,9 +61,7 @@ a {
   color: var(--white);
 }
 
-/* =========================================================
-   SHARED LAYOUT
-========================================================= */
+/* ---------- SHARED ---------- */
 
 .section-inner,
 .header-inner,
@@ -162,9 +154,7 @@ a {
   background: var(--off-white);
 }
 
-/* =========================================================
-   HEADER + NAV + LOGO  (WORKS WITH YOUR CURRENT HTML)
-========================================================= */
+/* ---------- HEADER ---------- */
 
 .site-header {
   position: relative;
@@ -175,61 +165,31 @@ a {
 }
 
 .header-inner {
-  min-height: 120px;
+  min-height: 86px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
 }
 
-/* Brand container */
 .brand {
   display: inline-flex;
   align-items: center;
-  flex-shrink: 0;
-  text-decoration: none;
-  width: 420px; /* desktop default */
+  gap: 12px;
+  min-width: 220px;
 }
 
-/* Your existing HTML uses .brand-mark → make it visible */
 .brand-mark {
-  display: flex;
-  align-items: center;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
 }
 
-/* Your existing HTML uses .logo-container */
-.logo-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: auto;
-}
-
-/* Your existing HTML uses .logo-slide-throb → apply animation + sizing */
-.logo-slide-throb {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-
-  /* animation start state */
-  opacity: 0;
-  transform: translateX(-45px);
-
-  /* slide + throb animation */
-  animation:
-    logoSlideIn 0.9s ease-out forwards,
-    logoThrob 3.5s ease-in-out 1s infinite;
-
-  transform-origin: center center;
-}
-
-/* Main navigation */
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 
 .main-nav a {
@@ -269,61 +229,24 @@ a {
   display: none;
 }
 
-/* No hamburger menu */
 .menu-toggle {
   display: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .logo-slide-throb {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin: 5px auto;
+  background: var(--white);
 }
 
-@keyframes logoThrob {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.06); }
-  55%  { transform: scale(1.02); }
-  70%  { transform: scale(1.06); }
-  100% { transform: scale(1); }
-}
-
-/* =========================================================
-   RESPONSIVE LOGO SIZING
-========================================================= */
-
-/* Tablet */
-@media (max-width: 760px) {
-  .brand {
-    width: 300px;
-  }
-
-  .header-inner {
-    min-height: 100px;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .main-nav {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 16px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .brand {
-    width: 220px;
-  }
-}
-
-/* =========================================================
-   HERO
-========================================================= */
+/* ---------- HERO ---------- */
 
 .hero {
   position: relative;
@@ -431,14 +354,16 @@ a {
   box-shadow: var(--shadow);
 }
 
-/* Optional real photo:
-.hero-photo-placeholder {
+/*
+  Replace the placeholder background with the client's
+  professional instructor photo:
+
   background-image:
     linear-gradient(rgba(0,0,0,.12), rgba(0,0,0,.35)),
     url("images/instructors.jpg");
+
   background-size: cover;
   background-position: center;
-}
 */
 
 .photo-overlay {
@@ -456,6 +381,7 @@ a {
 }
 
 .photo-overlay::before {
+  content: "OWNER";
   position: absolute;
   top: 28px;
   left: 28px;
@@ -520,9 +446,7 @@ a {
   line-height: 1.2;
 }
 
-/* =========================================================
-   MISSION
-========================================================= */
+/* ---------- MISSION ---------- */
 
 .mission-section {
   padding: 110px 0;
@@ -580,9 +504,7 @@ a {
   margin-top: 30px;
 }
 
-/* =========================================================
-   CLASSES
-========================================================= */
+/* ---------- CLASSES ---------- */
 
 .classes-preview {
   padding: 100px 0 110px;
@@ -592,7 +514,7 @@ a {
 
 .section-heading {
   display: flex;
-  align-items: flex-end;
+  align-items: end;
   justify-content: space-between;
   gap: 30px;
   margin-bottom: 40px;
@@ -677,7 +599,7 @@ a {
 }
 
 .class-card a span {
-  transition: transform 0.2s ease;
+  transition: transform .2s ease;
 }
 
 .class-card a:hover span {
@@ -688,47 +610,62 @@ a {
   display: none;
 }
 
-/* =========================================================
-   PHOTO STRIP (WIDE)
-========================================================= */
+/* ---------- PHOTO STRIP ---------- */
 
 .photo-strip {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  min-height: 350px;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 260px;
   background: var(--black);
 }
 
 .photo-tile {
   position: relative;
-  min-height: 350px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: flex-end;
-  padding: 28px;
-  color: var(--white);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  min-height: 260px;
+  overflow: hidden;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.05)),
+    linear-gradient(135deg, #303030, #737373);
+  border-right: 1px solid rgba(255,255,255,.15);
 }
 
-.photo-tile::before {
-  content: "";
+/*
+  Replace each tile with actual class photos:
+
+  .photo-one {
+    background-image:
+      linear-gradient(to top, rgba(0,0,0,.7), transparent),
+      url("images/class-1.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+*/
+
+.photo-tile:nth-child(even) {
+  background-color: #222;
+}
+
+.photo-tile::after {
+  content: "+";
   position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
+  top: 18px;
+  right: 20px;
+  color: rgba(255,255,255,.35);
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 2rem;
 }
 
 .photo-tile span {
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
 }
 
-/* =========================================================
-   FINAL CTA
-========================================================= */
+/* ---------- FINAL CTA ---------- */
 
 .final-cta {
   position: relative;
@@ -765,13 +702,11 @@ a {
 .final-cta h2 {
   font-family: "Barlow Condensed", Impact, sans-serif;
   font-size: clamp(3rem, 5vw, 5rem);
-  line-height: 0.9;
+  line-height: .9;
   text-transform: uppercase;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+/* ---------- FOOTER ---------- */
 
 .site-footer {
   background: var(--black);
@@ -780,7 +715,7 @@ a {
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr 0.8fr;
+  grid-template-columns: 1.4fr .8fr .8fr;
   gap: 70px;
   padding: 65px 0;
 }
@@ -793,7 +728,7 @@ a {
   max-width: 270px;
   margin-top: 18px;
   color: #999;
-  font-size: 0.85rem;
+  font-size: .85rem;
 }
 
 .footer-links,
@@ -807,9 +742,9 @@ a {
 .footer-contact h3 {
   margin-bottom: 10px;
   color: var(--red);
-  font-size: 0.7rem;
+  font-size: .7rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: .16em;
   text-transform: uppercase;
 }
 
@@ -817,7 +752,7 @@ a {
 .footer-contact p,
 .footer-contact a {
   color: #aaa;
-  font-size: 0.82rem;
+  font-size: .82rem;
 }
 
 .footer-links a:hover,
@@ -835,495 +770,14 @@ a {
   gap: 20px;
   border-top: 1px solid var(--border);
   color: #777;
-  font-size: 0.68rem;
+  font-size: .68rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: .08em;
   text-transform: uppercase;
 }
 
-/* =========================================================
-   SCHEDULE (UPCOMING CLASSES)
-========================================================= */
+/* ---------- RESPONSIVE ---------- */
 
-.schedule-section {
-  padding: 60px 0;
-  background: var(--black-soft);
-}
-
-.schedule-section .section-heading {
-  text-align: center;
-  width: min(100% - 40px, 800px);
-  margin: 0 auto;
-}
-
-.schedule-section .eyebrow {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
-.schedule-section .section-heading h2 {
-  margin: 0 0 12px;
-  color: var(--white);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
-
-.schedule-section .section-heading p {
-  margin: 0;
-  color: var(--gray);
-  font-size: 1rem;
-}
-
-.schedule-grid {
-  width: min(100% - 40px, 1180px);
-  margin: 35px auto 0;
-  display: grid;
-  gap: 16px;
-}
-
-.schedule-card {
-  display: grid;
-  grid-template-columns: 100px 1fr auto;
-  align-items: center;
-  gap: 25px;
-  padding: 20px;
-  background: var(--black-card);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--red);
-  border-radius: 4px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.schedule-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--red);
-}
-
-.schedule-date {
-  text-align: center;
-  border-right: 1px solid var(--border);
-  padding-right: 20px;
-}
-
-.schedule-date .month {
-  display: block;
-  color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
-.schedule-date .day {
-  display: block;
-  color: var(--white);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.schedule-info h3 {
-  margin: 0 0 6px;
-  color: var(--white);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 1.7rem;
-  text-transform: uppercase;
-}
-
-.schedule-info p {
-  margin: 4px 0;
-  color: var(--gray);
-}
-
-.schedule-info strong {
-  color: var(--white);
-}
-
-.schedule-info .class-description {
-  margin-top: 8px;
-}
-
-.schedule-info .class-location {
-  font-size: 0.9rem;
-}
-
-.schedule-card .btn {
-  white-space: nowrap;
-  color: var(--white);
-  font-size: 1.05rem;
-}
-
-.schedule-loading,
-.schedule-empty {
-  padding: 35px 20px;
-  text-align: center;
-  color: var(--gray);
-  background: var(--black-card);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-}
-
-.schedule-error {
-  padding: 25px 20px;
-  text-align: center;
-  color: var(--white);
-  background: var(--black-card);
-  border: 1px solid var(--red);
-  border-left: 4px solid var(--red);
-  border-radius: 4px;
-}
-
-/* =========================================================
-   REGISTRATION PAGE HERO
-========================================================= */
-
-.page-hero {
-  padding: 100px 20px 80px;
-  background: var(--black);
-  border-bottom: 1px solid var(--border);
-}
-
-.page-hero-inner {
-  width: min(100%, 850px);
-  margin: 0 auto;
-  text-align: center;
-}
-
-.page-hero .eyebrow {
-  display: block;
-  margin-bottom: 12px;
-  color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
-.page-hero h1 {
-  margin: 0 0 20px;
-  color: var(--white);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: clamp(4rem, 9vw, 7rem);
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-
-.page-hero h1 span {
-  color: var(--red);
-}
-
-.page-hero p {
-  max-width: 680px;
-  margin: 0 auto;
-  color: var(--gray);
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-/* =========================================================
-   REGISTRATION CARDS
-========================================================= */
-
-.registration-section {
-  padding: 90px 0;
-  background: var(--black-soft);
-}
-
-.registration-section .section-heading {
-  width: min(100% - 40px, 800px);
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.registration-section .section-heading .eyebrow {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
-.registration-section .section-heading h2 {
-  margin: 0 0 12px;
-  color: var(--white);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  text-transform: uppercase;
-}
-
-.registration-section .section-heading p {
-  margin: 0;
-  color: var(--gray);
-}
-
-.registration-grid {
-  width: min(100% - 40px, 1180px);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.registration-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 560px;
-  overflow: hidden;
-  background: var(--black-card);
-  border: 1px solid var(--border);
-  border-top: 4px solid var(--red);
-  border-radius: 4px;
-  box-shadow: 0 18px 50px rgba(0,0,0,.22);
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.registration-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--red);
-}
-
-.registration-number {
-  position: absolute;
-  top: 12px;
-  right: 18px;
-  color: rgba(255,255,255,.08);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 5rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.registration-card-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 42px 30px 30px;
-}
-
-.registration-label {
-  margin-bottom: 12px;
-  color: var(--red);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
-.registration-card h3 {
-  margin: 0 0 15px;
-  color: var(--white);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 2.25rem;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.registration-card-content > p {
-  margin: 0;
-  color: var(--gray);
-  line-height: 1.65;
-}
-
-.registration-features {
-  margin: 25px 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--border);
-}
-
-.registration-features li {
-  position: relative;
-  padding: 12px 0 12px 22px;
-  color: var(--off-white);
-  border-bottom: 1px solid var(--border);
-  font-size: 0.92rem;
-}
-
-.registration-features li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--red);
-  font-weight: 800;
-}
-
-.registration-bottom {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 15px;
-  margin-top: auto;
-  padding-top: 25px;
-  border-top: 1px solid var(--border);
-}
-
-.registration-price span {
-  display: block;
-  margin-bottom: 3px;
-  color: var(--dark-gray);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-
-.registration-price strong {
-  display: block;
-  color: var(--white);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 2.3rem;
-  line-height: 1;
-}
-
-.registration-btn {
-  white-space: nowrap;
-  color: var(--white);
-}
-
-/* =========================================================
-   REGISTRATION INFO
-========================================================= */
-
-.registration-info-section {
-  padding: 80px 0;
-  background: var(--black);
-}
-
-.registration-info {
-  width: min(100% - 40px, 1180px);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.registration-info-copy .eyebrow {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
-.registration-info-copy h2 {
-  margin: 0 0 18px;
-  color: var(--white);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  line-height: 0.95;
-  text-transform: uppercase;
-}
-
-.registration-info-copy p {
-  max-width: 560px;
-  margin: 0;
-  color: var(--gray);
-  line-height: 1.7;
-}
-
-.registration-steps {
-  display: grid;
-  gap: 15px;
-}
-
-.registration-step {
-  display: flex;
-  gap: 18px;
-  padding: 20px;
-  background: var(--black-card);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--red);
-}
-
-.registration-step > span {
-  flex: 0 0 auto;
-  color: var(--red);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 1.7rem;
-  font-weight: 700;
-}
-
-.registration-step strong {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--white);
-}
-
-.registration-step p {
-  margin: 0;
-  color: var(--gray);
-  font-size: 0.88rem;
-  line-height: 1.5;
-}
-
-/* =========================================================
-   EMPLOYEE / INSTRUCTORS
-========================================================= */
-
-.employee-section {
-  padding: 90px 0;
-  background: var(--black);
-  color: var(--white);
-  border-top: 1px solid var(--border);
-}
-
-.employee-heading {
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 2.8rem;
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 0.12em;
-  margin-bottom: 50px;
-  color: var(--red);
-}
-
-.employee-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-}
-
-.employee-card {
-  background: var(--black-card);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.employee-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 55px rgba(0,0,0,0.35);
-}
-
-.employee-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  display: block;
-  border-bottom: 3px solid var(--red);
-}
-
-.employee-name {
-  padding: 18px 20px 22px;
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gray);
-  text-align: center;
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-/* <= 1000px (tablet / small laptop) */
 @media (max-width: 1000px) {
 
   .hero-content {
@@ -1354,7 +808,7 @@ a {
   }
 
   .photo-strip {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .footer-inner {
@@ -1364,18 +818,8 @@ a {
   .footer-brand {
     grid-column: 1 / -1;
   }
-
-  .registration-grid {
-    grid-template-columns: 1fr;
-    max-width: 650px;
-  }
-
-  .registration-card {
-    min-height: auto;
-  }
 }
 
-/* <= 760px (mobile landscape / small tablet) */
 @media (max-width: 760px) {
 
   .section-inner,
@@ -1385,19 +829,47 @@ a {
   }
 
   .header-inner {
-    min-height: 100px;
-    flex-wrap: wrap;
-    gap: 16px;
+    min-height: 76px;
   }
 
-  .brand {
-    width: 300px;
+  .menu-toggle {
+    display: block;
   }
 
   .main-nav {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 16px;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    top: calc(100% + 1px);
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px;
+    background: var(--black);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .main-nav a {
+    padding: 14px 10px;
+  }
+
+  .main-nav .nav-register {
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .brand {
+    min-width: auto;
+  }
+
+  .brand-wordmark {
+    width: 100px;
   }
 
   .hero-content {
@@ -1410,7 +882,7 @@ a {
   }
 
   .hero-text {
-    font-size: 0.98rem;
+    font-size: .98rem;
   }
 
   .hero-visual {
@@ -1480,75 +952,9 @@ a {
     align-items: flex-start;
     padding: 18px 0 25px;
   }
-
-  .schedule-section {
-    padding: 50px 0;
-  }
-
-  .schedule-card {
-    grid-template-columns: 75px 1fr;
-    gap: 18px;
-  }
-
-  .schedule-date {
-    padding-right: 15px;
-  }
-
-  .schedule-date .day {
-    font-size: 2.5rem;
-  }
-
-  .schedule-info h3 {
-    font-size: 1.45rem;
-  }
-
-  .schedule-card .btn {
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-
-  .page-hero {
-    padding: 75px 20px 60px;
-  }
-
-  .registration-section {
-    padding: 60px 0;
-  }
-
-  .registration-info-section {
-    padding: 60px 0;
-  }
-
-  .registration-info {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .employee-section {
-    padding: 70px 0;
-  }
-
-  .employee-heading {
-    font-size: 2.2rem;
-  }
-
-  .employee-card img {
-    height: 220px;
-  }
 }
 
-/* <= 480px (mobile portrait) */
 @media (max-width: 480px) {
-
-  .section-inner,
-  .header-inner,
-  .footer-inner {
-    width: min(100% - 20px, var(--max-width));
-  }
-
-  .brand {
-    width: 220px;
-  }
 
   .hero-actions {
     flex-direction: column;
@@ -1583,37 +989,763 @@ a {
   }
 
   .photo-tile {
-    min-height: 220px;
+    min-height: 210px;
   }
 
+  
   .btn {
     min-height: 50px;
   }
+}
+/* ---------- INSTRUCTORS / EMPLOYEE SECTION (BRAND MATCHED) ---------- */
 
-  .registration-grid {
-    width: min(100% - 30px, 650px);
+.employee-section {
+  padding: 90px 0;
+  background: var(--black);
+  color: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+.employee-heading {
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 2.8rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.12em;
+  margin-bottom: 50px;
+  color: var(--red);
+}
+
+/* Grid layout */
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+}
+
+/* Individual card */
+.employee-card {
+  background: var(--black-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.employee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.35);
+}
+
+/* Photo */
+.employee-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 3px solid var(--red);
+}
+
+/* Name label */
+.employee-name {
+  padding: 18px 20px 22px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gray);
+  text-align: center;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .employee-section {
+    padding: 70px 0;
   }
 
-  .registration-card-content {
-    padding: 35px 22px 25px;
+  .employee-heading {
+    font-size: 2.2rem;
   }
 
-  .registration-bottom {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .registration-btn {
-    width: 100%;
-    text-align: center;
+  .employee-card img {
+    height: 220px;
   }
 }
-.brand-logo,
-.logo-container,
-.logo-slide-throb {
-  display: block !important;
-  opacity: 1 !important;
-  transform: none !important;
-  height: auto !important;
-  width: 100% !important;
+/* Wider photo strip */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* wider tiles */
+  min-height: 350px;
+}
+
+.photo-tile {
+  position: relative;
+  min-height: 350px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  color: var(--white);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.photo-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.photo-tile span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .photo-strip {
+    grid-template-columns: 1fr;
+  }
+  .photo-tile {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-tile {
+    min-height: 220px;
+  }
+}
+/* =========================
+   JROD LOGO
+========================= */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.brand-logo {
+    display: block;
+    width: 170px;
+    height: auto;
+    max-height: 64px;
+    object-fit: contain;
+
+    opacity: 0;
+    transform: translateX(-45px);
+
+    animation:
+        logoSlideIn 0.9s ease-out forwards,
+        logoThrob 3.5s ease-in-out 1s infinite;
+
+    transform-origin: center center;
+}
+
+/* Logo slides in from the left */
+@keyframes logoSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Subtle throb */
+@keyframes logoThrob {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.045);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .brand-logo {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+    .brand-logo {
+        width: 145px;
+        max-height: 58px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-logo {
+        width: 130px;
+        max-height: 52px;
+    }
+}
+/* =========================================================
+   UPCOMING CLASSES / SCHEDULE
+========================================================= */
+
+.schedule-section {
+    padding: 60px 0;
+    background: var(--black-soft);
+}
+
+.schedule-section .section-heading {
+    text-align: center;
+    width: min(100% - 40px, 800px);
+    margin: 0 auto;
+}
+
+.schedule-section .eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--red);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.schedule-section .section-heading h2 {
+    margin: 0 0 12px;
+    color: var(--white);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.schedule-section .section-heading p {
+    margin: 0;
+    color: var(--gray);
+    font-size: 1rem;
+}
+
+.schedule-grid {
+    width: min(100% - 40px, 1180px);
+    margin: 35px auto 0;
+    display: grid;
+    gap: 16px;
+}
+
+.schedule-card {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+}
+
+.schedule-date {
+    text-align: center;
+    border-right: 1px solid var(--border);
+    padding-right: 20px;
+}
+
+.schedule-date .month {
+    display: block;
+    color: var(--red);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.schedule-date .day {
+    display: block;
+    color: var(--white);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.schedule-info h3 {
+    margin: 0 0 6px;
+    color: var(--white);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+}
+
+.schedule-info p {
+    margin: 4px 0;
+    color: var(--gray);
+}
+
+.schedule-info strong {
+    color: var(--white);
+}
+
+.schedule-card .btn {
+    white-space: nowrap;
+    color: #ffffff;
+    font-size: 1.05rem;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+
+    .schedule-section {
+        padding: 50px 0;
+    }
+
+    .schedule-card {
+        grid-template-columns: 75px 1fr;
+        gap: 18px;
+    }
+
+    .schedule-date {
+        padding-right: 15px;
+    }
+
+    .schedule-date .day {
+        font-size: 2.5rem;
+    }
+
+    .schedule-info h3 {
+        font-size: 1.45rem;
+    }
+
+    .schedule-card .btn {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+}
+/* =========================================================
+   GOOGLE SHEET SCHEDULE
+========================================================= */
+
+.schedule-loading {
+    padding: 35px 20px;
+    text-align: center;
+    color: var(--gray);
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.schedule-empty {
+    padding: 35px 20px;
+    text-align: center;
+    color: var(--gray);
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.schedule-error {
+    padding: 25px 20px;
+    text-align: center;
+    color: var(--white);
+    background: var(--black-card);
+    border: 1px solid var(--red);
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+}
+
+.schedule-card {
+    transition: transform .2s ease, border-color .2s ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--red);
+}
+
+.schedule-info .class-description {
+    margin-top: 8px;
+}
+
+.schedule-info .class-location {
+    font-size: .9rem;
+}
+/* =========================================================
+   REGISTRATION PAGE
+========================================================= */
+
+.page-hero {
+    padding: 100px 20px 80px;
+    background: var(--black);
+    border-bottom: 1px solid var(--border);
+}
+
+.page-hero-inner {
+    width: min(100%, 850px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-hero .eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--red);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.page-hero h1 {
+    margin: 0 0 20px;
+    color: var(--white);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: clamp(4rem, 9vw, 7rem);
+    line-height: .9;
+    text-transform: uppercase;
+}
+
+.page-hero h1 span {
+    color: var(--red);
+}
+
+.page-hero p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--gray);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   REGISTRATION CARDS
+========================================================= */
+
+.registration-section {
+    padding: 90px 0;
+    background: var(--black-soft);
+}
+
+.registration-section .section-heading {
+    width: min(100% - 40px, 800px);
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.registration-section .section-heading .eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--red);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.registration-section .section-heading h2 {
+    margin: 0 0 12px;
+    color: var(--white);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    text-transform: uppercase;
+}
+
+.registration-section .section-heading p {
+    margin: 0;
+    color: var(--gray);
+}
+
+
+.registration-grid {
+    width: min(100% - 40px, 1180px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.registration-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 560px;
+    overflow: hidden;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--red);
+    border-radius: 4px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.22);
+    transition:
+        transform .25s ease,
+        border-color .25s ease;
+}
+
+
+.registration-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--red);
+}
+
+
+.registration-number {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    color: rgba(255,255,255,.08);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+
+.registration-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 42px 30px 30px;
+}
+
+
+.registration-label {
+    margin-bottom: 12px;
+    color: var(--red);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+
+.registration-card h3 {
+    margin: 0 0 15px;
+    color: var(--white);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: 2.25rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+
+.registration-card > .registration-card-content > p {
+    margin: 0;
+    color: var(--gray);
+    line-height: 1.65;
+}
+
+
+.registration-features {
+    margin: 25px 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border);
+}
+
+
+.registration-features li {
+    position: relative;
+    padding: 12px 0 12px 22px;
+    color: var(--off-white);
+    border-bottom: 1px solid var(--border);
+    font-size: .92rem;
+}
+
+
+.registration-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 800;
+}
+
+
+.registration-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: auto;
+    padding-top: 25px;
+    border-top: 1px solid var(--border);
+}
+
+
+.registration-price span {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--dark-gray);
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+
+.registration-price strong {
+    display: block;
+    color: var(--white);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: 2.3rem;
+    line-height: 1;
+}
+
+
+.registration-btn {
+    white-space: nowrap;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   REGISTRATION INFORMATION
+========================================================= */
+
+.registration-info-section {
+    padding: 80px 0;
+    background: var(--black);
+}
+
+
+.registration-info {
+    width: min(100% - 40px, 1180px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+
+.registration-info-copy .eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--red);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+
+.registration-info-copy h2 {
+    margin: 0 0 18px;
+    color: var(--white);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: .95;
+    text-transform: uppercase;
+}
+
+
+.registration-info-copy p {
+    max-width: 560px;
+    margin: 0;
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+
+.registration-steps {
+    display: grid;
+    gap: 15px;
+}
+
+
+.registration-step {
+    display: flex;
+    gap: 18px;
+    padding: 20px;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+}
+
+
+.registration-step > span {
+    flex: 0 0 auto;
+    color: var(--red);
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+
+.registration-step strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--white);
+}
+
+
+.registration-step p {
+    margin: 0;
+    color: var(--gray);
+    font-size: .88rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .registration-grid {
+        grid-template-columns: 1fr;
+        max-width: 650px;
+    }
+
+    .registration-card {
+        min-height: auto;
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .page-hero {
+        padding: 75px 20px 60px;
+    }
+
+    .registration-section {
+        padding: 60px 0;
+    }
+
+    .registration-info-section {
+        padding: 60px 0;
+    }
+
+    .registration-info {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .registration-grid {
+        width: min(100% - 30px, 650px);
+    }
+
+    .registration-card-content {
+        padding: 35px 22px 25px;
+    }
+
+    .registration-bottom {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .registration-btn {
+        width: 100%;
+        text-align: center;
+    }
+
 }
