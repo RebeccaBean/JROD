@@ -283,6 +283,14 @@ a {
   }
 }
 
+@keyframes logoThrob {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.06); }
+  55%  { transform: scale(1.02); }
+  70%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
 /* =========================================================
    RESPONSIVE LOGO SIZING
 ========================================================= */
