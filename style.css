@@ -381,7 +381,6 @@ a {
 }
 
 .photo-overlay::before {
-  content: "OWNER";
   position: absolute;
   top: 28px;
   left: 28px;
