@@ -456,7 +456,6 @@ a {
 }
 
 .photo-overlay::before {
-  content: "OWNER";
   position: absolute;
   top: 28px;
   left: 28px;
@@ -1609,7 +1608,7 @@ a {
     text-align: center;
   }
 }
-.brand-mark,
+.brand-logo,
 .logo-container,
 .logo-slide-throb {
   display: block !important;
