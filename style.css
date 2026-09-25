@@ -609,61 +609,6 @@ a {
   display: none;
 }
 
-/* ---------- PHOTO STRIP ---------- */
-
-.photo-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  min-height: 260px;
-  background: var(--black);
-}
-
-.photo-tile {
-  position: relative;
-  min-height: 260px;
-  overflow: hidden;
-  background:
-    linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.05)),
-    linear-gradient(135deg, #303030, #737373);
-  border-right: 1px solid rgba(255,255,255,.15);
-}
-
-/*
-  Replace each tile with actual class photos:
-
-  .photo-one {
-    background-image:
-      linear-gradient(to top, rgba(0,0,0,.7), transparent),
-      url("images/class-1.jpg");
-    background-size: cover;
-    background-position: center;
-  }
-*/
-
-.photo-tile:nth-child(even) {
-  background-color: #222;
-}
-
-.photo-tile::after {
-  content: "+";
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  color: rgba(255,255,255,.35);
-  font-family: "Barlow Condensed", Impact, sans-serif;
-  font-size: 2rem;
-}
-
-.photo-tile span {
-  position: absolute;
-  left: 20px;
-  bottom: 18px;
-  color: var(--white);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-
 /* ---------- FINAL CTA ---------- */
 
 .final-cta {
@@ -1071,16 +1016,32 @@ a {
     height: 220px;
   }
 }
-/* Wider photo strip */
+
+/* ---------- PHOTO STRIP ---------- */
+
+/*
+  Replace each tile with actual class photos:
+
+  .photo-one {
+    background-image:
+      linear-gradient(to top, rgba(0,0,0,.7), transparent),
+      url("images/class-1.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+*/
+
 .photo-strip {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* wider tiles */
+  grid-template-columns: repeat(2, 1fr);
   min-height: 350px;
+  background: var(--black);
 }
 
 .photo-tile {
   position: relative;
   min-height: 350px;
+  overflow: hidden;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1091,18 +1052,37 @@ a {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+
+.photo-tile:nth-child(even) {
+  background-color: #222;
 }
 
 .photo-tile::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,.45);
+}
+
+.photo-tile::after {
+  content: "+";
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  color: rgba(255,255,255,.35);
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 2rem;
 }
 
 .photo-tile span {
   position: relative;
   z-index: 2;
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
 }
 
 /* Mobile */
@@ -1206,9 +1186,10 @@ a {
 }
 
 .schedule-section .section-heading {
-    text-align: center;
+    display: block;
     width: min(100% - 40px, 800px);
-    margin: 0 auto;
+    margin: 0 auto 40px;
+    text-align: center;
 }
 
 .schedule-section .eyebrow {
